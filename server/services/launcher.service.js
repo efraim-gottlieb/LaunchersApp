@@ -10,8 +10,8 @@ export async function createLauncher(name,city,rocketType,latitude,longitude) {
       longitude,
     });
     return launcher
-  } catch {
-    throw new Error();
+  } catch (err) {
+    throw new Error(err);
   }
 }
 

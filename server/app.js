@@ -2,10 +2,11 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 
+import { connectDB } from "./db/mongo.js";
+
 import errorHanding from "./middlewares/errorHanding.js";
 import launcherRoutes from "./routes/launcher.routes.js"
 
-import { connectDB } from "./db/mongo.js";
 
 
 dotenv.config();
