@@ -1,10 +1,14 @@
-function HomePage() {
+function HomePage(props) {
+  const { launchers } = props;
 
   return (
-    <div>
-        home page
-    </div>
-  )
+    <>
+      <nav>
+        <button></button>
+      </nav>
+      <div className="launchers">{JSON.stringify(launchers)}</div>
+    </>
+  );
 }
 
-export default HomePage
+export default HomePage;

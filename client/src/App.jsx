@@ -4,17 +4,15 @@ import AddLauncherPage from "./pages/AddLauncherPage";
 import LauncherDetailsPage from "./pages/LauncherDetailsPage";
 import "./App.css";
 import useLaunchers from "./hooks/useLaunchers";
-import { useEffect } from "react";
 
 function App() {
-  const {launchers} = useLaunchers()
-  console.log(launchers)
+  const { launchers } = useLaunchers();
   return (
     <>
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/launcers/new" element={<AddLauncherPage />} />
+        <Route path="/" element={<HomePage launchers={launchers} />} />
         <Route path="/launcers/details/:id" element={<LauncherDetailsPage />} />
+        <Route path="/launcers/new" element={<AddLauncherPage />} />
       </Routes>
     </>
   );
