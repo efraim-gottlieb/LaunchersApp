@@ -21,24 +21,16 @@ function SearchBar({ DATA, seter } ) {
   
 
   return (
-    <div className="search-bar">
-      <div className="search-bar">
 
-      <h3>Search</h3>
-      <div>
+    <div className="search-bar">
         <label htmlFor="city">City:</label>
         <input id="city" type="text" placeholder="Search..." onChange={handleSearchCity} />
-      </div>
-      <div>
         <label htmlFor="type">Type:</label>
-        <input id="type" type="text" placeholder="Search..."/>
-      <button onClick={filterByType}>filter</button>
-      </div>
-      
+        <input id="type" type="text"/>
+      <button onClick={filterByType}>Filter</button>
       <button onClick={() => seter(DATA)}>All</button>
-      </div>
-
     </div>
+
   )
 }
 

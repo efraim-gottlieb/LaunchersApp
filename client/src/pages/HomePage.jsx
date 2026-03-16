@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router";
 import { useEffect, useState } from "react";
-
+import "./HomePage.css"
 import LauncherCard from "../components/LauncherCard";
 import SearchBar from "../components/SearchBar";
 
@@ -17,7 +17,7 @@ function HomePage(props) {
 
   return (
     <>
-      <nav>
+      <nav >
         <button onClick={() => navigate("/launchers/new")}>Add Launcher</button>
         <SearchBar DATA={launchers} seter={setViewLaunchers}/>
       </nav>
