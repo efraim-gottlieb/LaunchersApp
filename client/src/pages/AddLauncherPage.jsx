@@ -32,6 +32,7 @@ function AddLauncherPage() {
       alert("Error creating launcher");
     }
     navigate("/");
+    document.location.reload();
   }
   return (
     <div>

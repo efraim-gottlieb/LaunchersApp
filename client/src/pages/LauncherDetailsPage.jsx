@@ -19,7 +19,14 @@ function LauncherDetailsPage() {
   useEffect(() => {
     console.log(data);
   }, [data]);
-
+  async function deleteLauncher() {
+    await fetch(`http://localhost:8000/api/launchers/${id}`, {
+      method: "DELETE",
+    });
+    alert("Launcher deleted !");
+    navigate("/");
+    document.location.reload();
+  }
   return (
     <>
       <nav>
@@ -33,13 +40,7 @@ function LauncherDetailsPage() {
             <p>Rocket Type: {data.rocketType}</p>
             <p>Latitude: {data.latitude}</p>
             <p>Longitude: {data.longitude}</p>
-            <button onClick={async () => {
-              await fetch(`http://localhost:8000/api/launchers/${id}`, {
-                method: "DELETE",
-              });
-              alert("Launcher deleted !");
-              navigate("/");
-            }}>Delete Launcher</button>
+            <button onClick={deleteLauncher}>Delete Launcher</button>
           </div>
         )}
       </div>
