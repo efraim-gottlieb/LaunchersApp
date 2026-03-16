@@ -1,5 +1,8 @@
 .search-bar {
   display: flex;
   gap: 10px;
+  border: 1px solid;
+  padding: 0.8rem;
+  border-radius: 0.3rem;
 }
 

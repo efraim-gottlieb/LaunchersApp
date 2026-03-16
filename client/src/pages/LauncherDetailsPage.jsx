@@ -33,6 +33,13 @@ function LauncherDetailsPage() {
             <p>Rocket Type: {data.rocketType}</p>
             <p>Latitude: {data.latitude}</p>
             <p>Longitude: {data.longitude}</p>
+            <button onClick={async () => {
+              await fetch(`http://localhost:8000/api/launchers/${id}`, {
+                method: "DELETE",
+              });
+              alert("Launcher deleted !");
+              navigate("/");
+            }}>Delete Launcher</button>
           </div>
         )}
       </div>
