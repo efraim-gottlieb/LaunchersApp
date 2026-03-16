@@ -1,3 +1,4 @@
+import "./launcherCard.css"
 function LauncherCard({ launcher, onClick }) {
   const { _id, name, city, rocketType } = launcher;
   return (
