@@ -1,6 +1,7 @@
+import "./addLauncherPage.css";
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import "./addLauncherPage.css";
+
 function AddLauncherPage() {
   const navigate = useNavigate();
   const [form, setForm] = useState({
@@ -38,6 +39,7 @@ function AddLauncherPage() {
         <button onClick={() => navigate("/")}>Home</button>
       </nav>
       <div className="form">
+        <h2>Create Launcher</h2>
         <label htmlFor="name">Name</label>
         <input
           type="text"

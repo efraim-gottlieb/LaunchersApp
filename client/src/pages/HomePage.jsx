@@ -18,7 +18,7 @@ function HomePage(props) {
   return (
     <>
       <nav >
-        <button onClick={() => navigate("/launchers/new")}>Add Launcher</button>
+        <button onClick={() => navigate("/launchers/new")}>+ Add Launcher</button>
         <SearchBar DATA={launchers} seter={setViewLaunchers}/>
       </nav>
       <div className="launchers">

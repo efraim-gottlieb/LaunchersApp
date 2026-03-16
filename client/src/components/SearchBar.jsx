@@ -21,7 +21,6 @@ function SearchBar({ DATA, seter } ) {
   
 
   return (
-
     <div className="search-bar">
         <label htmlFor="city">City:</label>
         <input id="city" type="text" placeholder="Search..." onChange={handleSearchCity} />
