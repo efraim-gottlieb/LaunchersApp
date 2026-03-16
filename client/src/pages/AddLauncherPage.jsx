@@ -1,6 +1,8 @@
-import { lazy, useState } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router";
 import "./addLauncherPage.css";
 function AddLauncherPage() {
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     name: "",
     city: "",
@@ -28,9 +30,13 @@ function AddLauncherPage() {
     } else {
       alert("Error creating launcher");
     }
+    navigate("/");
   }
   return (
     <div>
+      <nav>
+        <button onClick={() => navigate("/")}>Home</button>
+      </nav>
       <div className="form">
         <label htmlFor="name">Name</label>
         <input
@@ -72,8 +78,8 @@ function AddLauncherPage() {
           value={form.longitude}
           onChange={handleChange}
         />
-      </div>
       <button onClick={send}>Send</button>
+      </div>
     </div>
   );
 }

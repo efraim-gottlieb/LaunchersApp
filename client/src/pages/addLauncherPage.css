@@ -1,9 +1,29 @@
 .form {
+    text-align: center;
   display: flex;
   flex-direction: column;
-  width: 60%;
+  width: 30%;
+  margin: auto;
+  text-align: left;
+  border-radius: 1rem;
+    padding: 20px;
+    background-color: black;
 }
 
 .form input {
-  width: 70%;
+  margin: 5px 0;
+  padding: 5px;
+}
+
+.form button {
+  width: 100px;
+  padding: 5px;
+  margin-top: 10px;
+  width: 30%;
+}
+
+nav {
+  display: flex;
+  justify-content: flex-start;
+  padding: 10px;
 }
