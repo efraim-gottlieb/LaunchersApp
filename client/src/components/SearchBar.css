@@ -1,0 +1,11 @@
+.search-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.search-bar .prop {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
