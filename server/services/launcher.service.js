@@ -1,6 +1,12 @@
 import { Launcher } from "../db/models/Launcher.js";
 
-export async function createLauncher(name,city,rocketType,latitude,longitude) {
+export async function createLauncher(
+  name,
+  city,
+  rocketType,
+  latitude,
+  longitude,
+) {
   try {
     const launcher = await Launcher.create({
       name,
@@ -9,7 +15,7 @@ export async function createLauncher(name,city,rocketType,latitude,longitude) {
       latitude,
       longitude,
     });
-    return launcher
+    return launcher;
   } catch (err) {
     throw new Error(err);
   }
@@ -17,5 +23,15 @@ export async function createLauncher(name,city,rocketType,latitude,longitude) {
 
 export async function getAllLaunchers() {
   const launchers = await Launcher.find();
-  return launchers
+  return launchers;
+}
+
+export async function getLauncherById(id) {
+  const launcher = await Launcher.findOne({ id });
+  return launcher;
+}
+
+export async function deleteById(id) {
+  const launcher = await Launcher.deleteOne({ id });
+  return launcher
 }

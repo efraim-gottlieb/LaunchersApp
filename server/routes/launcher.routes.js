@@ -6,6 +6,9 @@ router.route("/")
   .get(launcherControllers.launchers)
   .post(launcherControllers.createNewLauncher)
 
+router.route("/{:id}")
+  .get(launcherControllers.byId)
+  .delete(launcherControllers.deleteLauncher)
 
 
 export default router;
