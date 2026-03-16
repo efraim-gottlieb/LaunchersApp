@@ -1,8 +1,6 @@
 import mongoose from "mongoose";
-import { generateId } from "../../utils/idGenerator.js";
 
 const launcherSchhema = new mongoose.Schema({
-  id: { type: String, unique: true , required: true, default: generateId() },
   name: { type: String, required: true },
   city: { type: String },
   rocketType: { type: String },

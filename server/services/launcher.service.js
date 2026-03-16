@@ -27,11 +27,11 @@ export async function getAllLaunchers() {
 }
 
 export async function getLauncherById(id) {
-  const launcher = await Launcher.findOne({ id });
+  const launcher = await Launcher.findOne({ _id: id });
   return launcher;
 }
 
 export async function deleteById(id) {
-  const launcher = await Launcher.deleteOne({ id });
+  const launcher = await Launcher.deleteOne({ _id: id });
   return launcher
 }
