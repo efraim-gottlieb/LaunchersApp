@@ -18,12 +18,16 @@ function AddLauncherPage() {
   };
 
   async function send() {
+    try {
     form.latitude = +form.latitude;
-    form.longitude = +form.longitude;
+    form.longitude = +form.longitude;} catch {
+      alert("Latitude and Longitude must be numbers");
+      return;
+    }
 
     const response = await fetch("http://localhost:8000/api/launchers", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", "Authorization": `Bearer ${localStorage.getItem("token")}` },
       body: JSON.stringify(form),
     });
     if (response.ok) {
