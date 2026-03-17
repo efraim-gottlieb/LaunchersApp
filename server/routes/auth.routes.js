@@ -4,20 +4,17 @@ import { auth, authAdmin } from "../middlewares/auth.middleware.js";
 
 const router = express.Router();
 
-router.route("/register/create")
+router.route("/register")
+  .get(auth,authAdmin, authControllers.users)
   .post(auth, authAdmin, authControllers.addUser)
-
-router.route("/register/update")
+  
+router.route("/register/:id")
+  .delete(auth, authAdmin, authControllers.deleteUser)
   .put(auth, authAdmin, authControllers.updateUser)
 
-router.route("/register/delete")
-  .delete(auth, authAdmin, authControllers.deleteUser)
-
-router.route("/register/users")
-  .get(auth,authAdmin, authControllers.users)
 
 router.route("/login")
-  .post(auth,authControllers.login)
+  .post(authControllers.login)
 
 router.route("/getUser")
   .get(auth ,authControllers.profile)

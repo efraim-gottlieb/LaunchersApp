@@ -7,7 +7,7 @@ import {
 } from "../services/user.service.js";
 
 import { compare } from "../utils/hash.js";
-import { generateToken, verifyToken } from "../utils/token.js";
+import { generateToken } from "../utils/token.js";
 
 
 export async function addUser(req, res) {
@@ -64,8 +64,7 @@ export async function updateUser(req, res) {
 
 export async function login(req, res) {
   const { username, password } = req.body;
-  const users = await getAllUsers();
-  const user = users.find((u) => u.username == username);
+  const user = await User.findOne({username})
   if (!user) {
     return res.status(403).end("Unauthorized !");
   }
