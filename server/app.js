@@ -5,9 +5,8 @@ import dotenv from "dotenv";
 import { connectDB } from "./db/mongo.js";
 
 import errorHanding from "./middlewares/errorHanding.js";
-import launcherRoutes from "./routes/launcher.routes.js"
-import authRoutes from "./routes/auth.routes.js"
-
+import launcherRoutes from "./routes/launcher.routes.js";
+import authRoutes from "./routes/auth.routes.js";
 
 dotenv.config();
 
@@ -18,9 +17,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(express.json());
 
-app.use('/api/launchers', launcherRoutes)
-app.use('/api/auth', authRoutes)
-
+app.use("/api/launchers", launcherRoutes);
+app.use("/api/auth", authRoutes);
 
 app.use(errorHanding);
 
