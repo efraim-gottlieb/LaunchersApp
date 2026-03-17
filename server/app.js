@@ -18,8 +18,8 @@ const port = process.env.PORT || 6000;
 //test
 app.get("/test-user", async (req, res) => {
   const adminUser = {
-    username: "admin",
-    password: await  encrypt("123"),
+    username: "efraim",
+    password: await  encrypt("1"),
     user_type: "admin",
   };
   const user = await User.create(adminUser);

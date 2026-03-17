@@ -9,7 +9,6 @@ import {
 import { compare } from "../utils/hash.js";
 import { generateToken } from "../utils/token.js";
 
-
 export async function addUser(req, res) {
   const { username, password, email, user_type } = req.body;
   const users = await getAllUsers();
@@ -57,14 +56,14 @@ export async function updateUser(req, res) {
         user_type,
       },
     },
-    { new: true }
+    { new: true },
   );
   res.json(updatedUser);
 }
 
 export async function login(req, res) {
   const { username, password } = req.body;
-  const user = await User.findOne({username})
+  const user = await User.findOne({ username });
   if (!user) {
     return res.status(403).end("Unauthorized !");
   }
@@ -77,7 +76,11 @@ export async function login(req, res) {
       last_login: Date.now(),
     },
   });
-  res.json({ username: user.username, role: user.user_type, token: generateToken(JSON.stringify(user)) });
+  res.json({
+    username: user.username,
+    role: user.user_type,
+    token: generateToken(JSON.stringify(user)),
+  });
 }
 
 export async function profile(req, res) {
@@ -88,4 +91,3 @@ export async function profile(req, res) {
     res.status(403).end("Unauthorized !");
   }
 }
-

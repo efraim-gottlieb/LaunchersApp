@@ -9,6 +9,7 @@ router.route("/register")
   .post(auth, authAdmin, authControllers.addUser)
   
 router.route("/register/:id")
+  .get(auth, authAdmin, authControllers.byId)
   .delete(auth, authAdmin, authControllers.deleteUser)
   .put(auth, authAdmin, authControllers.updateUser)
 
