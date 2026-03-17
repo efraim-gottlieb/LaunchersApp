@@ -36,6 +36,7 @@ function UpdateUserPage() {
             username: document.getElementById("username").value,
             user_type: document.getElementById("user_type").value,
             email: document.getElementById("email").value,
+            password: document.getElementById("password").value
           }),
         },
       );
@@ -67,6 +68,8 @@ function UpdateUserPage() {
         <input type="text" name="user_type" id="user_type" defaultValue={data.user_type} />
         <label htmlFor="email">Email:</label>
         <input type="text" name="email" id="email" defaultValue={data.email} />
+        <label htmlFor="email">Password:</label>
+        <input type="text" name="password" id="password" defaultValue={data.username} />
         <button onClick={send}>Update</button>
       </div>
     </div>

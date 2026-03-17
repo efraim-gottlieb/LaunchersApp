@@ -6,7 +6,7 @@ import {
   getUserById,
 } from "../services/user.service.js";
 
-import { compare } from "../utils/hash.js";
+import { compare, encrypt } from "../utils/hash.js";
 import { generateToken } from "../utils/token.js";
 
 export async function addUser(req, res) {
@@ -51,7 +51,7 @@ export async function updateUser(req, res) {
     {
       $set: {
         username,
-        password,
+        password: await encrypt(password),
         email,
         user_type,
       },
