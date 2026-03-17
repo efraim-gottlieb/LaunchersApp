@@ -1,3 +1,4 @@
+import "./UserCard.css";
 function UserCard({ user }) {
   const { username, email, user_type, last_login, _id } = user;
   async function deleteUser() {
@@ -22,7 +23,7 @@ function UserCard({ user }) {
     }
   }
   return (
-    <div>
+    <div className="user-card">
       <h3>{username}</h3>
       <p>{email}</p>
       <p>{user_type}</p>
