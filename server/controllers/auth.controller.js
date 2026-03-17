@@ -5,7 +5,7 @@ import {
   getUserById,
 } from "../services/user.service.js";
 import { compare } from "../utils/hash.js";
-import { generateToken } from "../utils/token.js";
+import { generateToken, verifyToken } from "../utils/token.js";
 export async function addUser(req, res) {
   const { username, password, email, user_type } = req.body;
   const users = await getAllUsers();
@@ -50,4 +50,13 @@ export async function login(req, res) {
     return res.status(403).end("Unauthorized !");
   }
   res.send({ token: generateToken(JSON.stringify(user)) });
+}
+
+export async function profile(req, res) {
+  try {
+    const { username, email, user_type, last_login, _id } = req.user;
+    return res.json({ username, email, user_type, last_login, _id });
+  } catch {
+    res.status(403).end("Unauthorized !");
+  }
 }
