@@ -48,7 +48,7 @@ function HomePage() {
           LogOut
         </button>
         {role === "admin" && (
-          <button onClick={() => navigate("/users")}>Users</button>
+          <button onClick={() => navigate("/register")}>Register</button>
         )}
         {["admin", "modiin"].includes(role) && (
           <button onClick={() => navigate("/launchers/new")}>
