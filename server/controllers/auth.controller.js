@@ -56,7 +56,6 @@ export async function updateUser(req, res) {
         user_type,
       },
     },
-    { new: true },
   );
   res.json(updatedUser);
 }
