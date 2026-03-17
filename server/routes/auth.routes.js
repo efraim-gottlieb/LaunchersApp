@@ -1,17 +1,17 @@
 import express from "express";
 import * as authControllers from "../controllers/auth.controller.js"
-import { auth } from "../middlewares/auth.middleware.js";
+import { auth, authAdmin } from "../middlewares/auth.middleware.js";
 
 const router = express.Router();
 
 router.route("/register/create")
-  .post(authControllers.addUser)
+  .post(authAdmin, authControllers.addUser)
 
 router.route("/register/update")
-  .put(authControllers.updateUser)
+  .put(authAdmin, authControllers.updateUser)
 
 router.route("/register/delete")
-  .delete(authControllers.deleteUser)
+  .delete(authAdmin, authControllers.deleteUser)
 
 router.route("/login")
   .post(authControllers.login)

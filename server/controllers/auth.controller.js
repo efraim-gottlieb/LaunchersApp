@@ -11,7 +11,6 @@ import { generateToken, verifyToken } from "../utils/token.js";
 
 
 export async function addUser(req, res) {
-  // only admin
   const { username, password, email, user_type } = req.body;
   const users = await getAllUsers();
   const typeUserExists = users.filter((u) => u.user_type == user_type).length;
@@ -36,12 +35,32 @@ export async function byId(req, res) {
 
 export async function deleteUser(req, res) {
   const { id } = req.params;
-  const launcher = await deleteById(id);
-  if (launcher) return res.json(launcher);
-  res.status(404).send("launcher not found");
+  const user = await deleteById(id);
+  if (user) return res.json(user);
+  res.status(404).send("user not found");
 }
 
-export async function updateUser(req, res) {}
+export async function updateUser(req, res) {
+  const { id } = req.params;
+  const { username, password, email, user_type } = req.body;
+  const user = await getUserById(id);
+  if (!user) {
+    return res.status(404).send("user not found");
+  }
+  const updatedUser = await User.findByIdAndUpdate(
+    id,
+    {
+      $set: {
+        username,
+        password,
+        email,
+        user_type,
+      },
+    },
+    { new: true }
+  );
+  res.json(updatedUser);
+}
 
 export async function login(req, res) {
   const { username, password } = req.body;
