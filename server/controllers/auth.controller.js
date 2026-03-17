@@ -1,17 +1,22 @@
+import { User } from "../db/models/User.js";
 import {
   createUser,
   deleteById,
   getAllUsers,
   getUserById,
 } from "../services/user.service.js";
+
 import { compare } from "../utils/hash.js";
 import { generateToken, verifyToken } from "../utils/token.js";
+
+
 export async function addUser(req, res) {
+  // only admin
   const { username, password, email, user_type } = req.body;
   const users = await getAllUsers();
   const typeUserExists = users.filter((u) => u.user_type == user_type).length;
   if (typeUserExists) {
-    return res.send(`User with type :${user_type} already exists !`);
+    return res.send(`User with type : ${user_type} already exists !`);
   }
   const user = await createUser(username, password, email, user_type);
   res.status(201).json(user);
@@ -49,7 +54,12 @@ export async function login(req, res) {
   if (!isMatch) {
     return res.status(403).end("Unauthorized !");
   }
-  res.send({ token: generateToken(JSON.stringify(user)) });
+  await User.findByIdAndUpdate(user._id, {
+    $set: {
+      last_login: Date.now(),
+    },
+  });
+  res.json({ token: generateToken(JSON.stringify(user)) });
 }
 
 export async function profile(req, res) {

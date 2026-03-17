@@ -5,8 +5,10 @@ import {
   deleteById,
 } from "../services/launcher.service.js";
 
-
 export async function createNewLauncher(req, res) {
+  if (!["modiin", "admin"].includes(req.user.user_type)) {
+    return res.status(403).end("Unauthorized !");
+  }
   const { name, city, rocketType, latitude, longitude } = req.body;
   const launcher = await createLauncher(
     name,
@@ -26,13 +28,17 @@ export async function launchers(req, res) {
 export async function byId(req, res) {
   const { id } = req.params;
   const launcher = await getLauncherById(id);
-  if (launcher) return res.json( launcher );
+  if (launcher) return res.json(launcher);
   res.status(404).send("launcher not found");
 }
 
 export async function deleteLauncher(req, res) {
+  if (!["modiin", "admin"].includes(req.user.user_type)) {
+    return res.status(403).end("Unauthorized !");
+  }
+  
   const { id } = req.params;
   const launcher = await deleteById(id);
-  if (launcher) return res.json(launcher );
+  if (launcher) return res.json(launcher);
   res.status(404).send("launcher not found");
 }

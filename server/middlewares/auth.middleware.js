@@ -11,3 +11,7 @@ export async function auth(req, res, next) {
     return res.status(403).send("unaothorized !");
   }
 }
+
+export async function authAdmin(req, res, next) {
+  req.user.user_type == "admin" ? next() : res.status(403).send("unaothorized !");
+}
