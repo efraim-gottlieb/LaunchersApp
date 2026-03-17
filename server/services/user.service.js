@@ -1,10 +1,11 @@
-import User from "../db/models/User.js";
+import { User } from "../db/models/User.js";
+import { encrypt } from "../utils/hash.js";
 
 export async function createUser(username, password, email, user_type) {
   try {
     const user = await User.create({
       username,
-      password,
+      password: await encrypt(password),
       email,
       user_type,
     });
