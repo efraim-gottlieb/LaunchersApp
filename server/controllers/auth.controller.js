@@ -4,7 +4,8 @@ import {
   getAllUsers,
   getUserById,
 } from "../services/user.service.js";
-
+import { compare } from "../utils/hash.js";
+import { generateToken } from "../utils/token.js";
 export async function addUser(req, res) {
   const { username, password, email, user_type } = req.body;
   const users = await getAllUsers();
@@ -37,4 +38,16 @@ export async function deleteUser(req, res) {
 
 export async function updateUser(req, res) {}
 
-export async function login(req, res) {}
+export async function login(req, res) {
+  const { username, password } = req.body;
+  const users = await getAllUsers();
+  const user = users.find((u) => u.username == username);
+  if (!user) {
+    return res.status(403).end("Unauthorized !");
+  }
+  const isMatch = await compare(password, user.password);
+  if (!isMatch) {
+    return res.status(403).end("Unauthorized !");
+  }
+  res.send({ token: generateToken(JSON.stringify(user)) });
+}
