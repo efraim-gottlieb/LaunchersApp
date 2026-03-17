@@ -31,13 +31,14 @@ function AddLauncherPage() {
     } else {
       alert("Error creating launcher");
     }
-    navigate("/");
+    navigate("/home");
     document.location.reload();
   }
+  const role  = localStorage.getItem("role");
   return (
     <div>
       <nav>
-        <button onClick={() => navigate("/")}>Home</button>
+        <button onClick={() => navigate("/home")}>Home</button>
       </nav>
       <div className="form">
         <h2>Create Launcher</h2>

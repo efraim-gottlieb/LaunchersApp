@@ -1,14 +1,17 @@
 import express from "express";
 import * as launcherControllers from "../controllers/launcher.controller.js";
+import { auth } from "../middlewares/auth.middleware.js";
 
 const router = express.Router();
 router.route("/")
-  .get(launcherControllers.launchers)
-  .post(launcherControllers.createNewLauncher)
+  .get(auth ,launcherControllers.launchers)
+  .post(auth, launcherControllers.createNewLauncher)
 
 router.route("/{:id}")
-  .get(launcherControllers.byId)
-  .delete(launcherControllers.deleteLauncher)
+  .get(auth, launcherControllers.byId)
+  .delete(auth, launcherControllers.deleteLauncher)
 
+router.route("/destroyed/{:id}")
+  .put(auth, launcherControllers.setDestroyed)
 
 export default router;

@@ -3,12 +3,14 @@ import {
   getAllLaunchers,
   getLauncherById,
   deleteById,
+  setLauncherDestroyed,
 } from "../services/launcher.service.js";
 
 export async function createNewLauncher(req, res) {
   if (!["modiin", "admin"].includes(req.user.user_type)) {
     return res.status(403).end("Unauthorized !");
   }
+
   const { name, city, rocketType, latitude, longitude } = req.body;
   const launcher = await createLauncher(
     name,
@@ -39,6 +41,17 @@ export async function deleteLauncher(req, res) {
   
   const { id } = req.params;
   const launcher = await deleteById(id);
+  if (launcher) return res.json(launcher);
+  res.status(404).send("launcher not found");
+}
+
+export async function setDestroyed(req, res) {
+  if (!["modiin", "admin"].includes(req.user.user_type)) {
+    return res.status(403).end("Unauthorized !");
+  }
+  
+  const { id } = req.params;
+  const launcher = await setLauncherDestroyed(id);
   if (launcher) return res.json(launcher);
   res.status(404).send("launcher not found");
 }

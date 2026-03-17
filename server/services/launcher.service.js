@@ -33,5 +33,13 @@ export async function getLauncherById(id) {
 
 export async function deleteById(id) {
   const launcher = await Launcher.deleteOne({ _id: id });
-  return launcher
+  return launcher;
+}
+
+export async function setLauncherDestroyed(id) {
+  const launcher = await Launcher.findOneAndUpdate(
+    { _id: id },
+    { $set: { destroyed: true } }
+  );
+  return launcher;
 }

@@ -6,6 +6,7 @@ const launcherSchhema = new mongoose.Schema({
   rocketType: { type: String },
   latitude: { type: Number },
   longitude: { type: Number },
+  destroyed: {type: Boolean, default: false}
 });
 
 export const Launcher = mongoose.model("Launcher", launcherSchhema);

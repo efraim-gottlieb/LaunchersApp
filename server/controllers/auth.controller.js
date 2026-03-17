@@ -78,7 +78,7 @@ export async function login(req, res) {
       last_login: Date.now(),
     },
   });
-  res.json({ token: generateToken(JSON.stringify(user)) });
+  res.json({ username: user.username, role: user.user_type, token: generateToken(JSON.stringify(user)) });
 }
 
 export async function profile(req, res) {
