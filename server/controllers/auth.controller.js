@@ -14,7 +14,7 @@ export async function addUser(req, res) {
   const users = await getAllUsers();
   const typeUserExists = users.filter((u) => u.user_type == user_type).length;
   if (typeUserExists) {
-    return res.send(`User with type : ${user_type} already exists !`);
+    return res.status(400).send(`User with type : ${user_type} already exists !`);
   }
   const user = await createUser(username, password, email, user_type);
   res.status(201).json(user);
