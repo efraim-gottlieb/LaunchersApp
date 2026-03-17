@@ -18,16 +18,19 @@ function AddLauncherPage() {
   };
 
   async function send() {
-    try {
     form.latitude = +form.latitude;
-    form.longitude = +form.longitude;} catch {
+    form.longitude = +form.longitude;
+    if (isNaN(form.latitude) || isNaN(form.longitude)) {
       alert("Latitude and Longitude must be numbers");
       return;
     }
 
     const response = await fetch("http://localhost:8000/api/launchers", {
       method: "POST",
-      headers: { "Content-Type": "application/json", "Authorization": `Bearer ${localStorage.getItem("token")}` },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
       body: JSON.stringify(form),
     });
     if (response.ok) {
@@ -38,7 +41,7 @@ function AddLauncherPage() {
     navigate("/home");
     document.location.reload();
   }
-  const role  = localStorage.getItem("role");
+  const role = localStorage.getItem("role");
   return (
     <div>
       <nav>
@@ -86,7 +89,7 @@ function AddLauncherPage() {
           value={form.longitude}
           onChange={handleChange}
         />
-      <button onClick={send}>Send</button>
+        <button onClick={send}>Send</button>
       </div>
     </div>
   );

@@ -19,7 +19,11 @@ function SearchBar({ DATA, seter } ) {
       seter(filteredData);
     }
   
-
+    // fiter destroyed
+    const filterByDestroyed = () => {
+      const filteredData = DATA.filter((item) => item.destroyed);
+      seter(filteredData);
+    }
   return (
     <div className="search-bar">
         <label htmlFor="city">City:</label>
@@ -27,6 +31,7 @@ function SearchBar({ DATA, seter } ) {
         <label htmlFor="type">Type:</label>
         <input id="type" type="text"/>
       <button onClick={filterByType}>Filter</button>
+      <button onClick={filterByDestroyed}>Destroyed</button>
       <button onClick={() => seter(DATA)}>All</button>
     </div>
 

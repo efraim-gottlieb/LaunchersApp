@@ -18,7 +18,7 @@ function HomePage() {
       setViewLaunchers(launchers);
     }
   }, [launchers]);
-  const role  = localStorage.getItem("role");
+  const role = localStorage.getItem("role");
   async function profile() {
     const user = await fetch(`http://localhost:8000/api/auth/getUser`, {
       headers: {
@@ -26,13 +26,17 @@ function HomePage() {
       },
     });
     const data = await user.json();
-    alert(`Username: ${data.username}\nType: ${data.user_type}\nLast login: ${new Date(data.last_login).toLocaleString()}`);
+    alert(
+      `Username: ${data.username}\nType: ${data.user_type}\nLast login: ${new Date(data.last_login).toLocaleString()}`,
+    );
   }
 
   return (
     <>
       <nav>
-        <button className="profile" onClick={profile}>{localStorage.getItem("username").slice(0, 1).toUpperCase()}</button>
+        <button className="profile" onClick={profile}>
+          {localStorage.getItem("username").slice(0, 1).toUpperCase()}
+        </button>
         <button
           onClick={() => {
             localStorage.removeItem("token");
@@ -46,9 +50,11 @@ function HomePage() {
         {role === "admin" && (
           <button onClick={() => navigate("/users")}>Users</button>
         )}
-        <button onClick={() => navigate("/launchers/new")}>
-          + Add Launcher
-        </button>
+        {["admin", "modiin"].includes(role) && (
+          <button onClick={() => navigate("/launchers/new")}>
+            + Add Launcher
+          </button>
+        )}
         <SearchBar DATA={launchers} seter={setViewLaunchers} />
       </nav>
       <div className="launchers">
