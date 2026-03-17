@@ -1,5 +1,7 @@
+import { useNavigate } from "react-router";
 import "./UserCard.css";
 function UserCard({ user }) {
+    const navigate = useNavigate()
   const { username, email, user_type, last_login, _id } = user;
   async function deleteUser() {
     try {
@@ -29,13 +31,9 @@ function UserCard({ user }) {
       <p>{user_type}</p>
       <p>{last_login}</p>
       <button onClick={deleteUser}>Delete User</button>
+      <button onClick={()=>{navigate(`/register/update/${user._id}`)}}>Edit User</button>
     </div>
   );
 }
 
 export default UserCard;
-//   username: { type: String, required: true },
-//   password: { type: String, required: true },
-//   email: { type: String },
-//   user_type: { type: String },
-//   last_login: { type: Date || null, default: null },

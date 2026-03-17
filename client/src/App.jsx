@@ -31,7 +31,7 @@ function App() {
         <Route path="/launchers/new" element={<AddLauncherPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/register/create" element={<AddUserPage />} />
-        <Route path="/register/update" element={<UpdateUserPage />} />
+        <Route path="/register/update/:id" element={<UpdateUserPage />} />
       </Routes>
     </>
   );
