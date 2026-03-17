@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
-
+import "./LoginPage.css"
 function LoginPage() {
   const navigate = useNavigate();
   if (localStorage.getItem("token")) {
